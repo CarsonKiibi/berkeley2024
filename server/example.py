@@ -6,11 +6,16 @@ import asyncio
 async def main() -> None:
     
     load_dotenv()
-    CHARLIE_HUME_API_KEY = os.getenv("CHARLIE_HUME_API_KEY")
-    client = HumeVoiceClient(CHARLIE_HUME_API_KEY)
+    HUME_API_KEY = os.getenv("HUME_API_KEY")
+    EVI_CONFIG_ID = os.getenv("EVI_CONFIG_ID")
 
-    # Start streaming EVI over your device's microphone and speakers 
-    async with client.connect() as socket:
+    client = HumeVoiceClient(HUME_API_KEY)
+
+    # Establish a connection with EVI with your configuration by passing
+    # the config_id as an argument to the connect method
+    async with client.connect(config_id=EVI_CONFIG_ID) as socket:
         await MicrophoneInterface.start(socket)
 
+
+# Run the main function
 asyncio.run(main())
