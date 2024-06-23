@@ -1,1 +1,1 @@
-# berkeley2024
+# UC Berkeley 2024 AI Hackathon
